@@ -15,6 +15,6 @@ export function isExternal(path) {
  * @returns {Boolean}
  */
 export function validMobile(str) {
-  const valid_map = ['admin', '13800000002']
+  const valid_map = ['admin', '13800000002', '13800000001']
   return valid_map.indexOf(str.trim()) >= 0
 }

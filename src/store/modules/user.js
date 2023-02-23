@@ -18,9 +18,8 @@ export default {
   },
   actions: {
     async login({ commit }, loginInfo) {
-      const res = await login(loginInfo);
-      commit('setToken', res.data)
-      console.log(res);
+      const token = await login(loginInfo);
+      commit('setToken', token);
     }
   }
 };
