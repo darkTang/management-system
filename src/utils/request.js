@@ -1,4 +1,5 @@
 import axios from 'axios';
+import store from '@/store';
 import { Message } from 'element-ui';
 
 const service = axios.create({
@@ -8,6 +9,9 @@ const service = axios.create({
 
 
 service.interceptors.request.use(config => {
+  if (store.getters.token) {
+    config.headers.Authorization = `Bearer ${store.getters.token}`;
+  }
   return config;
 }, err => {
   Promise.reject(err);
@@ -16,7 +20,7 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use(res => {
   const { success, message, data } = res.data;
   if (success) {
-    Message.success(message);
+    // Message.success(message);
     return data;
   } else {
     Message.error(message);
