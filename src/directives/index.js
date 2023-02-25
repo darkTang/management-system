@@ -7,10 +7,10 @@ export default {
   install(Vue) {
     Vue.directive('imgError', {
       inserted(element, binding) {
+        element.src = binding.value;
         element.onerror = function () {
           this.src = defaultImage;
         };
-        element.src = binding.value;
       }
     });
   }

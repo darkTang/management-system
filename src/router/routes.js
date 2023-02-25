@@ -15,13 +15,31 @@ export const constantRoutes = [
     path: '/',
     component: () => import('@/layout'),
     redirect: '/dashboard',
-    children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
-    }]
+    children: [
+      {
+        path: 'dashboard',
+        name: 'Dashboard',
+        component: () => import('@/views/dashboard/index'),
+        meta: { title: '首页', icon: 'dashboard' }
+      }
+    ]
   },
 
   { path: '*', redirect: '/404', hidden: true }
+];
+
+
+export const asyncRoutes = [
+  {
+    path: '/employees',
+    component: () => import('@/layout'),
+    children: [
+      {
+        path: '',
+        name: 'Employees',
+        component: () => import('@/views/employees'),
+        meta: { title: '员工', icon: 'people' }
+      }
+    ]
+  }
 ];
