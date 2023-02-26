@@ -31,6 +31,18 @@ export const constantRoutes = [
 
 export const asyncRoutes = [
   {
+    path: '/departments',
+    component: () => import('@/layout'),
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/departments'),
+        name: 'Departments',
+        meta: { title: '组织架构', icon: 'tree' }
+      }
+    ]
+  },
+  {
     path: '/employees',
     component: () => import('@/layout'),
     children: [
@@ -41,5 +53,5 @@ export const asyncRoutes = [
         meta: { title: '员工', icon: 'people' }
       }
     ]
-  }
+  },
 ];
