@@ -43,6 +43,19 @@ export const asyncRoutes = [
     ]
   },
   {
+    path: '/setting',
+    component: () => import('@/layout'),
+    children: [{
+      path: '',
+      name: 'Setting',
+      component: () => import('@/views/setting'),
+      meta: {
+        title: '公司设置',
+        icon: 'setting'
+      }
+    }]
+  },
+  {
     path: '/employees',
     component: () => import('@/layout'),
     children: [
