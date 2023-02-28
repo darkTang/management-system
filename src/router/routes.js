@@ -1,7 +1,7 @@
 export const constantRoutes = [
   {
     path: '/login',
-    component: () => import('@/views/login/index'),
+    component: () => import('@/views/login'),
     hidden: true
   },
 
@@ -19,8 +19,21 @@ export const constantRoutes = [
       {
         path: 'dashboard',
         name: 'Dashboard',
-        component: () => import('@/views/dashboard/index'),
+        component: () => import('@/views/dashboard'),
         meta: { title: '首页', icon: 'dashboard' }
+      }
+    ]
+  },
+
+  {
+    path: '/import',
+    component: () => import('@/layout'),
+    hidden: true,
+    children: [
+      {
+        path: '',
+        name: 'Import',
+        component: () => import('@/views/import'),
       }
     ]
   },
