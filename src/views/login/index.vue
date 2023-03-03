@@ -63,33 +63,23 @@
 </template>
 
 <script>
-import { validMobile } from '@/utils/validate'
-
 export default {
   name: 'Login',
   data() {
-    const validateMobile = (rule, value, callback) => {
-      if (!validMobile(value)) {
-        callback(new Error('Please enter the correct user name'))
-      } else {
-        callback()
-      }
-    }
-    const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
-      } else {
-        callback()
-      }
-    }
     return {
       loginForm: {
         mobile: '13800000002',
         password: '123456',
       },
       loginRules: {
-        mobile: [{ required: true, trigger: 'blur', validator: validateMobile }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }],
+        mobile: [
+          { required: true, trigger: 'blur', message: '手机号不能为空' },
+          { pattern: /^1[3-9]\d{9}$/, trigger: 'blur', message: '手机号格式不正确' },
+        ],
+        password: [
+          { required: true, trigger: 'blur', message: '密码不能为空' },
+          { min: 6, max: 16, trigger: 'blur', message: '密码长度在6-16位之间' },
+        ],
       },
       loading: false,
       passwordType: 'password',

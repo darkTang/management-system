@@ -23,6 +23,7 @@
               />
             </template>
           </el-table-column>
+          <el-table-column label="手机号" sortable prop="mobile" />
           <el-table-column label="工号" sortable prop="workNumber" />
           <el-table-column
             label="聘用形式"
@@ -44,7 +45,7 @@
               <el-button
                 type="text"
                 size="small"
-                @click="$router.push(`/employee/detail/${row.id}`)"
+                @click="$router.push(`/employees/detail/${row.id}`)"
               >查看</el-button>
               <el-button type="text" size="small">转正</el-button>
               <el-button type="text" size="small">调岗</el-button>

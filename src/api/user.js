@@ -23,3 +23,12 @@ export function getUserDetail(id) {
   });
 }
 
+// 保存员工基本信息
+export function saveUserDetail(data) {
+  return request({
+    url: `/sys/user/${data.id}`,
+    method: 'put',
+    data
+  });
+}
+
