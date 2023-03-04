@@ -51,7 +51,7 @@
               <el-button type="text" size="small">转正</el-button>
               <el-button type="text" size="small">调岗</el-button>
               <el-button type="text" size="small">离职</el-button>
-              <el-button type="text" size="small">角色</el-button>
+              <el-button type="text" size="small" @click="showRole(row)">角色</el-button>
               <el-button type="text" size="small" @click="delEmployeeById(row.id)">删除</el-button>
             </template>
           </el-table-column>
@@ -75,6 +75,7 @@
           <canvas ref="qrcode"></canvas>
         </el-row>
       </el-dialog>
+      <AssignRole :showRoleDialog.sync="showRoleDialog" :userId="userId" ref="assignRole" />
     </div>
   </div>
 </template>
@@ -84,9 +85,10 @@ import AddEmployee from './components/add-employee.vue'
 import { getEmployeeList, delEmployeeById } from '@/api/employees'
 import EmployeeEnum from '@/api/constant/employees'
 import QrCode from 'qrcode'
+import AssignRole from './components/assign-role.vue'
 export default {
   name: 'Employees',
-  components: { AddEmployee },
+  components: { AddEmployee, AssignRole },
   data() {
     return {
       employeeList: [],
@@ -98,6 +100,8 @@ export default {
       },
       showDialog: false,
       showCodeDialog: false,
+      showRoleDialog: false,
+      userId: ''
     }
   },
   created() {
@@ -188,6 +192,11 @@ export default {
         this.$message.warning('该用户尚未上传图像')
       }
     },
+    showRole(row) {
+      this.showRoleDialog = true
+      this.userId = row.id
+      this.$refs.assignRole.getUserDetail(this.userId)
+    }
   },
 }
 </script>

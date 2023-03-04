@@ -12,6 +12,12 @@ export function getCompanyInfo(companyId) {
     url: `/company/${companyId}`
   });
 }
+// 根据id查询角色信息
+export function getRoleDetail(id) {
+  return request({
+    url: `/sys/role/${id}`
+  });
+}
 
 export function deleteRole(id) {
   return request({

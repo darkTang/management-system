@@ -83,15 +83,28 @@ export const asyncRoutes = [
         name: 'Detail',
         component: () => import('@/views/employees/Detail.vue'),
         hidden: true,
-        meta: { title: '员工详情'},
+        meta: { title: '员工详情' },
       },
       {
         path: 'print/:id',
         name: 'Print',
         component: () => import('@/views/employees/Print.vue'),
         hidden: true,
-        meta: { title: '员工打印'},
+        meta: { title: '员工打印' },
       }
     ]
+  },
+  {
+    path: '/permission',
+    component: () => import('@/layout'),
+    children: [{
+      path: '',
+      name: 'Permission',
+      component: () => import('@/views/permission'),
+      meta: {
+        title: '权限设置',
+        icon: 'lock'
+      }
+    }]
   },
 ];
