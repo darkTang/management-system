@@ -32,9 +32,11 @@ import variables from '@/styles/variables.scss'
 export default {
   components: { SidebarItem, Logo },
   computed: {
-    ...mapGetters(['sidebar']),
+    ...mapGetters(['sidebar', 'allRoutes']),
     routes() {
-      return this.$router.options.routes
+      // 获取当前路由表，虽然addRoutes，但是不会响应式变化
+      // return this.$router.options.routes
+      return this.allRoutes
     },
     activeMenu() {
       const route = this.$route

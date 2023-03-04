@@ -13,9 +13,13 @@ router.beforeEach(async (to, from, next) => {
       next('/');
     } else {
       if (!store.getters.userId) {
-        await store.dispatch('user/getUserInfo');
+        const { roles: { menus,points } } = await store.dispatch('user/getUserInfo');
+        const newRoutes = await store.dispatch('permission/filterRoutes', menus);
+        router.addRoutes([...newRoutes, { path: '*', redirect: '/404', hidden: true }]);
+        next(to.path);   // 这里必须用next(to.path), 否则会导致刷新动态路由出现白屏
+      } else {
+        next();
       }
-      next();
     }
   } else {
     if (whiteList.includes(to.path)) {

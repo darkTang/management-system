@@ -24,7 +24,8 @@ export const constantRoutes = [
       }
     ]
   },
-
+  // // 这里的路由规则必须放在所有路由的最后面，否则在做动态路由时，刷新动态路由会导致出现404
+  // { path: '*', redirect: '/404', hidden: true },
   {
     path: '/import',
     component: () => import('@/layout'),
@@ -38,7 +39,7 @@ export const constantRoutes = [
     ]
   },
 
-  { path: '*', redirect: '/404', hidden: true }
+
 ];
 
 
@@ -49,18 +50,19 @@ export const asyncRoutes = [
     children: [
       {
         path: '',
+        name: 'departments',
         component: () => import('@/views/departments'),
-        name: 'Departments',
         meta: { title: '组织架构', icon: 'tree' }
       }
     ]
   },
+
   {
     path: '/setting',
     component: () => import('@/layout'),
     children: [{
       path: '',
-      name: 'Setting',
+      name: 'settings',
       component: () => import('@/views/setting'),
       meta: {
         title: '公司设置',
@@ -68,13 +70,14 @@ export const asyncRoutes = [
       }
     }]
   },
+
   {
     path: '/employees',
     component: () => import('@/layout'),
     children: [
       {
         path: '',
-        name: 'Employees',
+        name: 'employees',
         component: () => import('@/views/employees'),
         meta: { title: '员工管理', icon: 'people' },
       },
@@ -94,16 +97,69 @@ export const asyncRoutes = [
       }
     ]
   },
+
   {
     path: '/permission',
     component: () => import('@/layout'),
     children: [{
       path: '',
-      name: 'Permission',
+      name: 'permissions',
       component: () => import('@/views/permission'),
       meta: {
         title: '权限设置',
         icon: 'lock'
+      }
+    }]
+  },
+  {
+    path: '/salary',
+    component: () => import('@/layout'),
+    children: [{
+      path: '',
+      name: 'salarys',
+      component: () => import('@/views/salary'),
+      meta: {
+        title: '工资',
+        icon: 'money'
+      }
+    }]
+  },
+  {
+    path: '/social',
+    component: () => import('@/layout'),
+    children: [{
+      path: '',
+      name: 'social_securitys',
+      component: () => import('@/views/social'),
+      meta: {
+        title: '社保',
+        icon: 'table'
+      }
+    }]
+  },
+  {
+    path: '/approval',
+    component: () => import('@/layout'),
+    children: [{
+      path: '',
+      name: 'approvals',
+      component: () => import('@/views/approval'),
+      meta: {
+        title: '审批',
+        icon: 'tree-table'
+      }
+    }]
+  },
+  {
+    path: '/attendance',
+    component: () => import('@/layout'),
+    children: [{
+      path: '',
+      name: 'attendances',
+      component: () => import('@/views/attendance'),
+      meta: {
+        title: '考勤',
+        icon: 'excel'
       }
     }]
   },
