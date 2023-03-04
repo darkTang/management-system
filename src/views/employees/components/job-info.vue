@@ -3,7 +3,7 @@
     <!-- 打印 -->
     <el-row type="flex" justify="end">
       <el-tooltip content="打印岗位信息">
-        <router-link :to="`/employee/print/${userId}?type=job`">
+        <router-link :to="`/employees/print/${userId}?type=job`">
           <i class="el-icon-printer" />
         </router-link>
       </el-tooltip>

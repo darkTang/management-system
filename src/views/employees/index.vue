@@ -20,6 +20,7 @@
                 v-imgError="row.staffPhoto"
                 alt
                 style="width: 80px; height: 80px; border-radius: 50%; padding: 10px"
+                @click="showQrCode(row.staffPhoto)"
               />
             </template>
           </el-table-column>
@@ -69,6 +70,11 @@
 
       <!-- 放置弹层组件 -->
       <AddEmployee :show-dialog.sync="showDialog" />
+      <el-dialog title="二维码" :visible.sync="showCodeDialog">
+        <el-row type="flex" justify="center">
+          <canvas ref="qrcode"></canvas>
+        </el-row>
+      </el-dialog>
     </div>
   </div>
 </template>
@@ -77,6 +83,7 @@
 import AddEmployee from './components/add-employee.vue'
 import { getEmployeeList, delEmployeeById } from '@/api/employees'
 import EmployeeEnum from '@/api/constant/employees'
+import QrCode from 'qrcode'
 export default {
   name: 'Employees',
   components: { AddEmployee },
@@ -90,6 +97,7 @@ export default {
         total: 0,
       },
       showDialog: false,
+      showCodeDialog: false,
     }
   },
   created() {
@@ -169,6 +177,16 @@ export default {
       const m = padZero(date.getMonth() + 1)
       const d = padZero(date.getDate())
       return `${y}-${m}-${d}`
+    },
+    showQrCode(url) {
+      if (url) {
+        this.showCodeDialog = true
+        this.$nextTick(() => {
+          QrCode.toCanvas(this.$refs.qrcode, url)
+        })
+      } else {
+        this.$message.warning('该用户尚未上传图像')
+      }
     },
   },
 }

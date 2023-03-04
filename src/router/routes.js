@@ -76,13 +76,21 @@ export const asyncRoutes = [
         path: '',
         name: 'Employees',
         component: () => import('@/views/employees'),
-        meta: { title: '员工', icon: 'people' },
+        meta: { title: '员工管理', icon: 'people' },
       },
       {
         path: 'detail/:id?',
         name: 'Detail',
         component: () => import('@/views/employees/Detail.vue'),
-        hidden: true
+        hidden: true,
+        meta: { title: '员工详情'},
+      },
+      {
+        path: 'print/:id',
+        name: 'Print',
+        component: () => import('@/views/employees/Print.vue'),
+        hidden: true,
+        meta: { title: '员工打印'},
       }
     ]
   },
