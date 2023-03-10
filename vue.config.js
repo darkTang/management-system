@@ -40,6 +40,7 @@ module.exports = {
       '/api': {
         target: 'http://ihrm.itheima.net',
         changeOrigin: true,
+        // pathRewrite: {'^/api': ''}
       }
     }
   },
